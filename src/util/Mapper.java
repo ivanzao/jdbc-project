@@ -1,13 +1,13 @@
-package mapper;
+package util;
 
 import entity.Client;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ClientMapper {
+public class Mapper {
 
-    public static Client getFromResultSet(ResultSet rs) throws SQLException {
+    public static Client getClientFromResultSet(ResultSet rs) throws SQLException {
         String cpf = rs.getString("cpf");
         if (cpf != null) {
             Client client = new Client(cpf);
