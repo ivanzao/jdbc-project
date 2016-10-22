@@ -3,7 +3,7 @@ package entity;
 import java.util.Date;
 
 public class Sale {
-	private int id;
+	@Id private int id;
 	private float value;
 	private Date date;
 	private Store store;

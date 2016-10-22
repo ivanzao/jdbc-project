@@ -1,7 +1,7 @@
 package entity;
 
 public class Store {
-	private String cnpj;
+	@Id private String cnpj;
 	private String name;
 	private String url;
 	private String email;

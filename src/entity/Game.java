@@ -1,7 +1,7 @@
 package entity;
 
 public class Game {
-	private int id;
+	@Id private int id;
 	private String name;
 	private float price;
 	private Genre genre;

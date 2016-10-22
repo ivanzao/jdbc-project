@@ -3,7 +3,7 @@ package entity;
 import java.util.Date;
 
 public class Client {
-    private String cpf;
+    @Id private String cpf;
     private String name;
     private String phone;
     private String email;

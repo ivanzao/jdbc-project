@@ -1,7 +1,7 @@
 package entity;
 
 public class Producer {
-	private String cnpj;
+	@Id private String cnpj;
 	private String name;
 	
 	public Producer(String cnpj) {

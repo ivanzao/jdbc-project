@@ -1,8 +1,8 @@
 package entity;
 
 public class SaleGame {
-	private Sale sale;
-	private Game game;
+	@Id private Sale sale;
+	@Id private Game game;
 	
 	public SaleGame(Sale sale, Game game) {
 		this.sale = sale;
