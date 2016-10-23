@@ -3,7 +3,8 @@ package entity;
 import java.util.Date;
 
 public class Client {
-    @Id private String cpf;
+    @Id
+    private String cpf;
     private String name;
     private String phone;
     private String email;
@@ -52,5 +53,9 @@ public class Client {
 
     public Date getCreatedAt() {
         return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

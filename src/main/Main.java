@@ -1,7 +1,9 @@
 package main;
 
 import dao.ClientDAO;
+import dao.DAO;
 import dao.DAOFactory;
+import dao.MySqlDAO;
 import entity.Client;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        ClientDAO dao = DAOFactory.getClientDAO();
+        MySqlDAO dao = DAOFactory.getClientDAO();
 
         System.out.println("----- FindAll -----\n");
         List<Client> clients = dao.findAll();
@@ -24,7 +26,7 @@ public class Main {
             System.out.println("------------------\n");
         });
 
-        Client client = dao.findOne("12345678910");
+        Client client = (Client) dao.findOne("12345678910");
         dao.delete(client);
 
         System.out.println("\n----- FindAll -----");
