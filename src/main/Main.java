@@ -1,7 +1,5 @@
 package main;
 
-import dao.ClientDAO;
-import dao.DAO;
 import dao.DAOFactory;
 import dao.MySqlDAO;
 import entity.Client;

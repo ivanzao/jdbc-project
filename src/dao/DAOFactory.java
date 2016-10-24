@@ -1,23 +1,30 @@
 package dao;
 
-import java.sql.Connection;
-
-import connection.ConnectionFactory;
-import entity.Client;
-import entity.Producer;
+import entity.*;
 
 public class DAOFactory {
 
-//	public static ClientDAO getClientDAO() {
-//		Connection connection = ConnectionFactory.getConnection();
-//		return new MySqlClientDao(connection);
-//	}
-
-	public static MySqlDAO<Client, String> getClientDAO() {
-		return new MySqlDAO<>(Client.class);
-	}
+    public static MySqlDAO<Client, String> getClientDAO() {
+        return new MySqlDAO<>(Client.class);
+    }
 
     public static MySqlDAO<Producer, String> getProducerDAO() {
         return new MySqlDAO<>(Producer.class);
+    }
+
+    public static MySqlDAO<Game, String> getGameDAO() {
+        return new MySqlDAO<>(Game.class);
+    }
+
+    public static MySqlDAO<Sale, String> getSaleDAO() {
+        return new MySqlDAO<>(Sale.class);
+    }
+
+    public static MySqlDAO<SaleGame, String> getSaleGameDAO() {
+        return new MySqlDAO<>(SaleGame.class);
+    }
+
+    public static MySqlDAO<Store, String> getStoreDAO() {
+        return new MySqlDAO<>(Store.class);
     }
 }

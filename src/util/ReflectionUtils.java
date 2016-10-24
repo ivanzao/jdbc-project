@@ -37,4 +37,13 @@ public class ReflectionUtils {
         }
         return null;
     }
+
+    public static boolean hasField(String field, Class klass) {
+        try {
+            return klass.getDeclaredField(field) != null;
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

@@ -50,11 +50,42 @@ public class MySqlDAO<T, K> {
         return null;
     }
 
-    public List findAll() {
+    public T findByParameter(String parameter, Object value) {
+        try {
+            String query = "SELECT * FROM " + entityName + " WHERE " + getEntityName(parameter) + " = ?;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setObject(1, value);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next())
+                return mapEntity(rs);
+        } catch (SQLException e) {
+            System.out.println("Something went wrong with MySQL." + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<T> findAll() {
         String query = "SELECT * FROM " + entityName + ";";
         List<T> entities = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next())
+                entities.add(mapEntity(rs));
+        } catch (SQLException e) {
+            System.out.println("Something went wrong with MySQL." + e.getMessage());
+            e.printStackTrace();
+        }
+        return entities;
+    }
+
+    public List<T> findAllByParameter(String parameter, Object value) {
+        List<T> entities = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM " + entityName + " WHERE " + getEntityName(parameter) + " = ?;";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setObject(1, value);
             ResultSet rs = statement.executeQuery();
             while (rs.next())
                 entities.add(mapEntity(rs));
