@@ -31,7 +31,7 @@ public class DynamicMySqlDAO<T, K> {
 
     DynamicMySqlDAO(Class<T> klass) throws NoSuchMethodException {
         String className = klass.getName().substring(klass.getName().lastIndexOf(".") + 1);
-        
+
         this.connection = ConnectionFactory.getConnection();
         this.klass = klass;
         this.entityName = DatabaseNaming.getEntityName(className);
@@ -124,7 +124,7 @@ public class DynamicMySqlDAO<T, K> {
                 statement.executeUpdate();
                 return true;
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             System.out.println("Could not save entity " + entityName + ". " + e.getMessage());
             e.printStackTrace();
         }
@@ -149,7 +149,7 @@ public class DynamicMySqlDAO<T, K> {
             PreparedStatement statement = prepareStatementWithParameters(sb.toString(), parameters, entity);
             statement.executeUpdate();
             return true;
-        } catch (NoSuchMethodException | SQLException e){
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException | SQLException e) {
             System.out.println("Could not save entity " + entityName + ". " + e.getMessage());
             e.printStackTrace();
             return false;
@@ -180,24 +180,19 @@ public class DynamicMySqlDAO<T, K> {
         }
     }
 
-    private PreparedStatement prepareStatementWithParameters(String query, List<Field> fieldParameters, T entity) throws SQLException {
-        try {
-            PreparedStatement statement = connection.prepareStatement(query);
-            for (int i = 1; i <= fieldParameters.size(); i++) {
-                Field field = fieldParameters.get(i - 1);
-                if (field.isAnnotationPresent(ManyToOne.class)) {
-                    statement = applyManyToOneRules(field, statement, entity, i);
-                } else if (field.isAnnotationPresent(EnumType.class)) {
-                    statement = applyEnumTypeRules(field, statement, entity, i);
-                } else {
-                    addParameterToStatement(field, statement, entity, i);
-                }
+    private PreparedStatement prepareStatementWithParameters(String query, List<Field> fieldParameters, T entity) throws SQLException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        PreparedStatement statement = connection.prepareStatement(query);
+        for (int i = 1; i <= fieldParameters.size(); i++) {
+            Field field = fieldParameters.get(i - 1);
+            if (field.isAnnotationPresent(ManyToOne.class)) {
+                statement = applyManyToOneRules(field, statement, entity, i);
+            } else if (field.isAnnotationPresent(EnumType.class)) {
+                statement = applyEnumTypeRules(field, statement, entity, i);
+            } else {
+                addParameterToStatement(field, statement, entity, i);
             }
-            return statement;
-        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-            return null;
         }
+        return statement;
     }
 
     private PreparedStatement addParameterToStatement(Field field, PreparedStatement statement, T entity, int i) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
