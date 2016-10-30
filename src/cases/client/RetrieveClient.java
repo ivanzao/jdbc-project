@@ -1,6 +1,6 @@
 package cases.client;
 
-import dao.MySqlDAO;
+import dao.DynamicMySqlDAO;
 import entity.Client;
 import util.ReflectionUtils;
 
@@ -8,9 +8,9 @@ import java.util.List;
 
 public class RetrieveClient {
 
-    private MySqlDAO<Client, String> dao;
+    private DynamicMySqlDAO<Client, String> dao;
 
-    public RetrieveClient(MySqlDAO<Client, String> dao) {
+    public RetrieveClient(DynamicMySqlDAO<Client, String> dao) {
         this.dao = dao;
     }
 

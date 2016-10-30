@@ -1,6 +1,6 @@
 package util;
 
-import entity.Id;
+import entity.annotation.Id;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -8,34 +8,23 @@ import java.sql.ResultSet;
 
 public class ReflectionUtils {
 
-    public static String getIdName(Field[] fields) {
+    public static Field getIdField(Field[] fields) {
         for (Field field : fields) {
             if (field.isAnnotationPresent(Id.class)) {
-                return field.getName();
+                return field;
             }
         }
-        return fields[0].getName();
+        return fields[0];
     }
 
-    public static Method getGetterMethodForField(Field field, Class klass) {
+    public static Method getGetterMethodForField(Field field, Class klass) throws NoSuchMethodException {
         String methodName = "get" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
-        try {
-            return klass.getDeclaredMethod(methodName);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return klass.getDeclaredMethod(methodName);
     }
 
-    public static Method getMapperMethod(String className) {
+    public static Method getMapperMethod(String className) throws NoSuchMethodException {
         String methodName = "get" + className + "FromResultSet";
-        try {
-            return Mapper.class.getDeclaredMethod(methodName, ResultSet.class);
-        } catch (NoSuchMethodException e) {
-            System.out.println("No such method " + methodName + " on class 'Mapper'");
-            e.printStackTrace();
-        }
-        return null;
+        return Mapper.class.getDeclaredMethod(methodName, ResultSet.class);
     }
 
     public static boolean hasField(String field, Class klass) {

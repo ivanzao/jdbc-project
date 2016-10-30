@@ -1,7 +1,7 @@
 package main;
 
 import dao.DAOFactory;
-import dao.MySqlDAO;
+import dao.DynamicMySqlDAO;
 import entity.Client;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        MySqlDAO dao = DAOFactory.getClientDAO();
+        DynamicMySqlDAO dao = DAOFactory.getClientDAO();
 
         System.out.println("----- FindAll -----\n");
         List<Client> clients = dao.findAll();

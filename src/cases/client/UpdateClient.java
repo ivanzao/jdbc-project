@@ -1,13 +1,13 @@
 package cases.client;
 
-import dao.MySqlDAO;
+import dao.DynamicMySqlDAO;
 import entity.Client;
 
 public class UpdateClient {
 
-    private MySqlDAO<Client, String> dao;
+    private DynamicMySqlDAO<Client, String> dao;
 
-    public UpdateClient(MySqlDAO<Client, String> dao) {
+    public UpdateClient(DynamicMySqlDAO<Client, String> dao) {
         this.dao = dao;
     }
 

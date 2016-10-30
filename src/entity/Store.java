@@ -1,7 +1,10 @@
 package entity;
 
+import entity.annotation.Id;
+
 public class Store {
-	@Id private String cnpj;
+	@Id
+	private String cnpj;
 	private String name;
 	private String url;
 	private String email;

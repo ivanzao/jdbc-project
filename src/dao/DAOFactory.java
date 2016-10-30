@@ -4,27 +4,57 @@ import entity.*;
 
 public class DAOFactory {
 
-    public static MySqlDAO<Client, String> getClientDAO() {
-        return new MySqlDAO<>(Client.class);
+    public static DynamicMySqlDAO<Client, String> getClientDAO() {
+        try {
+            return new DynamicMySqlDAO<>(Client.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static MySqlDAO<Producer, String> getProducerDAO() {
-        return new MySqlDAO<>(Producer.class);
+    public static DynamicMySqlDAO<Producer, String> getProducerDAO() {
+        try {
+            return new DynamicMySqlDAO<>(Producer.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static MySqlDAO<Game, String> getGameDAO() {
-        return new MySqlDAO<>(Game.class);
+    public static DynamicMySqlDAO<Game, String> getGameDAO() {
+        try {
+            return new DynamicMySqlDAO<>(Game.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static MySqlDAO<Sale, String> getSaleDAO() {
-        return new MySqlDAO<>(Sale.class);
+    public static DynamicMySqlDAO<Sale, String> getSaleDAO() {
+        try {
+            return new DynamicMySqlDAO<>(Sale.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static MySqlDAO<SaleGame, String> getSaleGameDAO() {
-        return new MySqlDAO<>(SaleGame.class);
+    public static DynamicMySqlDAO<SaleGame, String> getSaleGameDAO() {
+        try {
+            return new DynamicMySqlDAO<>(SaleGame.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static MySqlDAO<Store, String> getStoreDAO() {
-        return new MySqlDAO<>(Store.class);
+    public static DynamicMySqlDAO<Store, String> getStoreDAO() {
+        try {
+            return new DynamicMySqlDAO<>(Store.class);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -1,9 +1,12 @@
 package entity;
 
+import entity.annotation.Id;
+
 import java.util.Date;
 
 public class Sale {
-	@Id private int id;
+	@Id
+    private int id;
 	private float value;
 	private Date date;
 	private Store store;

@@ -1,5 +1,7 @@
 package entity;
 
+import entity.annotation.Id;
+
 import java.util.Date;
 
 public class Client {

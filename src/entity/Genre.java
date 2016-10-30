@@ -1,12 +1,12 @@
 package entity;
 
 public enum Genre {
-	ACTION("action"),
-	ADVENTURE("adventure"),
-	HORROR("horror"),
-	RPG("rpg"),
-	SPORTS("sports"),
-	FIGHTING("fighting");
+	ACTION("ACTION"),
+	ADVENTURE("ADVENTURE"),
+	HORROR("HORROR"),
+	RPG("RPG"),
+	SPORTS("SPORTS"),
+	FIGHTING("FIGHTING");
 	
 	private String genre;
 	

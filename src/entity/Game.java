@@ -1,46 +1,50 @@
 package entity;
 
+import entity.annotation.EnumType;
+import entity.annotation.Id;
+import entity.annotation.ManyToOne;
+
 public class Game {
-	@Id private int id;
-	private String name;
-	private float price;
-	private Genre genre;
-	private Producer producer;
-	
-	public Game(int id, Producer producer) {
-		this.id = id;
-		this.producer = producer;
-	}
-	
-	public int getId() {
-		return id;
-	}
+    @Id private int id;
+    private String name;
+    private float price;
+    @EnumType private Genre genre;
+    @ManyToOne private Producer producer;
 
-	public String getName() {
-		return name;
-	}
+    public Game(int id, Producer producer) {
+        this.id = id;
+        this.producer = producer;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public float getPrice() {
-		return price;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setPrice(float price) {
-		this.price = price;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Genre getGenre() {
-		return genre;
-	}
+    public float getPrice() {
+        return price;
+    }
 
-	public void setGenre(Genre genre) {
-		this.genre = genre;
-	}
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
-	public Producer getProducer() {
-		return producer;
-	}
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
 }

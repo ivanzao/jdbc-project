@@ -1,13 +1,13 @@
 package cases.client;
 
-import dao.MySqlDAO;
+import dao.DynamicMySqlDAO;
 import entity.Client;
 
 public class DeleteClient {
 
-    private MySqlDAO<Client, String> dao;
+    private DynamicMySqlDAO<Client, String> dao;
 
-    public DeleteClient(MySqlDAO<Client, String> dao) {
+    public DeleteClient(DynamicMySqlDAO<Client, String> dao) {
         this.dao = dao;
     }
 

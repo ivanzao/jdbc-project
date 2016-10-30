@@ -1,20 +1,33 @@
 package klass;
 
 import dao.DAOFactory;
-import dao.MySqlDAO;
+import dao.DynamicMySqlDAO;
 import entity.Client;
+import entity.Game;
+import entity.Genre;
+import entity.Producer;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ReflectionTest {
     private static Class<Client> klass = Client.class;
 
     public static void main(String[] args) {
-        MySqlDAO<Client, String> clientDAO = DAOFactory.getClientDAO();
-        clientDAO.delete("00000000000");
+        DynamicMySqlDAO producerDAO = DAOFactory.getProducerDAO();
+        DynamicMySqlDAO gameDAO = DAOFactory.getGameDAO();
+
+        Producer producer = (Producer) producerDAO.findAll().get(0);
+
+        Game game = new Game(1, producer);
+        game.setName("FIFA 2017");
+        game.setGenre(Genre.SPORTS);
+        game.setPrice((float) 210.40);
+        gameDAO.save(game);
 
         List<Field> parameters = new ArrayList<>();
         parameters.addAll(Arrays.asList(klass.getDeclaredFields()));
