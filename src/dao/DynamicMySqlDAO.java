@@ -199,6 +199,7 @@ public class DynamicMySqlDAO<T, K> {
         Method getterMethod = ReflectionUtils.getGetterMethodForField(field, klass);
         if (getterMethod != null) {
             statement.setObject(i, getterMethod.invoke(entity));
+            return statement;
         }
         throw new InvocationTargetException(new Throwable());
     }

@@ -22,7 +22,7 @@ public class DAOFactory {
         }
     }
 
-    public static DynamicMySqlDAO<Game, String> getGameDAO() {
+    public static DynamicMySqlDAO<Game, Integer> getGameDAO() {
         try {
             return new DynamicMySqlDAO<>(Game.class);
         } catch (NoSuchMethodException e) {
@@ -31,7 +31,7 @@ public class DAOFactory {
         }
     }
 
-    public static DynamicMySqlDAO<Sale, String> getSaleDAO() {
+    public static DynamicMySqlDAO<Sale, Integer> getSaleDAO() {
         try {
             return new DynamicMySqlDAO<>(Sale.class);
         } catch (NoSuchMethodException e) {
@@ -40,7 +40,7 @@ public class DAOFactory {
         }
     }
 
-    public static DynamicMySqlDAO<SaleGame, String> getSaleGameDAO() {
+    public static DynamicMySqlDAO<SaleGame, Integer> getSaleGameDAO() {
         try {
             return new DynamicMySqlDAO<>(SaleGame.class);
         } catch (NoSuchMethodException e) {

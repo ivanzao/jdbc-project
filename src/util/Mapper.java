@@ -6,16 +6,9 @@ import entity.Producer;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 
 public class Mapper {
-
-    //public static Object getObjectFromResultSet(ResultSet rs, Class klass) {
-     //   Object id =
-    //}
-
-    private void invokeGetMethod() {
-
-    }
 
     public static Client getClientFromResultSet(ResultSet rs) throws SQLException {
         String cpf = rs.getString("cpf");
