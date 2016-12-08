@@ -8,7 +8,7 @@ public class Sale {
 	@Id
     private int id;
 	private float value;
-	private Date date;
+	private Date createdAt;
 	private Store store;
 	private Client client;
 	
@@ -26,12 +26,12 @@ public class Sale {
 		this.value = value;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public int getId() {

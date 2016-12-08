@@ -3,6 +3,7 @@ package entity;
 import entity.annotation.EnumType;
 import entity.annotation.Id;
 import entity.annotation.ManyToOne;
+import entity.type.Genre;
 
 public class Game {
     @Id private Integer id;

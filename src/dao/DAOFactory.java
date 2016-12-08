@@ -31,7 +31,7 @@ public class DAOFactory {
         }
     }
 
-    public static DynamicMySqlDAO<Sale, String> getSaleDAO() {
+    public static DynamicMySqlDAO<Sale, Integer> getSaleDAO() {
         try {
             return new DynamicMySqlDAO<>(Sale.class);
         } catch (NoSuchMethodException e) {

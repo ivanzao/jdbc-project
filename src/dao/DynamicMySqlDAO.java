@@ -180,7 +180,8 @@ public class DynamicMySqlDAO<T, K> {
         }
     }
 
-    private PreparedStatement prepareStatementWithParameters(String query, List<Field> fieldParameters, T entity) throws SQLException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    private PreparedStatement prepareStatementWithParameters(String query, List<Field> fieldParameters, T entity)
+            throws SQLException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         PreparedStatement statement = connection.prepareStatement(query);
         for (int i = 1; i <= fieldParameters.size(); i++) {
             Field field = fieldParameters.get(i - 1);
@@ -195,7 +196,8 @@ public class DynamicMySqlDAO<T, K> {
         return statement;
     }
 
-    private PreparedStatement addParameterToStatement(Field field, PreparedStatement statement, T entity, int i) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
+    private PreparedStatement addParameterToStatement(Field field, PreparedStatement statement, T entity, int i)
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
         Method getterMethod = ReflectionUtils.getGetterMethodForField(field, klass);
         if (getterMethod != null) {
             statement.setObject(i, getterMethod.invoke(entity));
@@ -204,7 +206,8 @@ public class DynamicMySqlDAO<T, K> {
         throw new InvocationTargetException(new Throwable());
     }
 
-    private PreparedStatement applyManyToOneRules(Field field, PreparedStatement statement, T entity, int i) throws InvocationTargetException, IllegalAccessException, SQLException, NoSuchMethodException {
+    private PreparedStatement applyManyToOneRules(Field field, PreparedStatement statement, T entity, int i)
+            throws InvocationTargetException, IllegalAccessException, SQLException, NoSuchMethodException {
         Class fieldClass = field.getType();
         Field relatedEntityIdField = ReflectionUtils.getIdField(fieldClass.getDeclaredFields());
 
@@ -220,7 +223,8 @@ public class DynamicMySqlDAO<T, K> {
         throw new InvocationTargetException(new Throwable());
     }
 
-    private PreparedStatement applyEnumTypeRules(Field field, PreparedStatement statement, T entity, int i) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
+    private PreparedStatement applyEnumTypeRules(Field field, PreparedStatement statement, T entity, int i)
+            throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
         Method getterMethod = ReflectionUtils.getGetterMethodForField(field, klass);
         if (getterMethod != null) {
             statement.setObject(i, getterMethod.invoke(entity).toString());
