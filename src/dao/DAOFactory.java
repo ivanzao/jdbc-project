@@ -40,7 +40,7 @@ public class DAOFactory {
         }
     }
 
-    public static DynamicMySqlDAO<SaleGame, String> getSaleGameDAO() {
+    public static DynamicMySqlDAO<SaleGame, Integer> getSaleGameDAO() {
         try {
             return new DynamicMySqlDAO<>(SaleGame.class);
         } catch (NoSuchMethodException e) {
