@@ -36,7 +36,7 @@ public class DynamicMySqlDAO<T, K> {
         this.klass = klass;
         this.entityName = DatabaseNaming.getEntityName(className);
         this.fields = klass.getDeclaredFields();
-        this.idName = getIdField(fields).toString();
+        this.idName = getIdField(fields).getName();
         this.mapperMethod = ReflectionUtils.getMapperMethod(className);
     }
 
@@ -199,6 +199,7 @@ public class DynamicMySqlDAO<T, K> {
         Method getterMethod = ReflectionUtils.getGetterMethodForField(field, klass);
         if (getterMethod != null) {
             statement.setObject(i, getterMethod.invoke(entity));
+            return statement;
         }
         throw new InvocationTargetException(new Throwable());
     }
@@ -223,7 +224,9 @@ public class DynamicMySqlDAO<T, K> {
         Method getterMethod = ReflectionUtils.getGetterMethodForField(field, klass);
         if (getterMethod != null) {
             statement.setObject(i, getterMethod.invoke(entity).toString());
+            return statement;
+        } else {
+            throw new InvocationTargetException(new Throwable());
         }
-        throw new InvocationTargetException(new Throwable());
     }
 }

@@ -2,42 +2,18 @@ package main;
 
 import dao.DAOFactory;
 import dao.DynamicMySqlDAO;
-import entity.Client;
-
-import java.util.List;
+import entity.Game;
+import entity.Producer;
 
 public class Main {
 
     public static void main(String[] args) {
-        DynamicMySqlDAO dao = DAOFactory.getClientDAO();
+        DynamicMySqlDAO<Game, Integer> gameDAO = DAOFactory.getGameDAO();
 
-        System.out.println("----- FindAll -----\n");
-        List<Client> clients = dao.findAll();
+        Game game = gameDAO.findOne(1);
+        Producer producer = game.getProducer();
 
-        clients.forEach(client -> {
-            System.out.println("----- Client -----");
-            System.out.println("CPF: " + client.getCpf());
-            System.out.println("Nome: " + client.getName());
-            System.out.println("Telefone: " + client.getPhone());
-            System.out.println("Email: " + client.getEmail());
-            System.out.println("Endereço: " + client.getAddress());
-            System.out.println("------------------\n");
-        });
-
-        Client client = (Client) dao.findOne("12345678910");
-        dao.delete(client);
-
-        System.out.println("\n----- FindAll -----");
-        List<Client> clientsAfter = dao.findAll();
-
-        clientsAfter.forEach(clientAfter -> {
-            System.out.println("----- Client -----");
-            System.out.println("CPF: " + clientAfter.getCpf());
-            System.out.println("Nome: " + clientAfter.getName());
-            System.out.println("Telefone: " + clientAfter.getPhone());
-            System.out.println("Email: " + clientAfter.getEmail());
-            System.out.println("Endereço: " + clientAfter.getAddress());
-            System.out.println("------------------\n");
-        });
+        System.out.println(producer.getName());
+        System.out.println(producer.getCnpj());
     }
 }

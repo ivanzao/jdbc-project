@@ -1,21 +1,18 @@
 package util;
 
+import dao.DAOFactory;
+import dao.DynamicMySqlDAO;
 import entity.Client;
+import entity.Game;
+import entity.Genre;
 import entity.Producer;
 
-import java.lang.reflect.Method;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Mapper {
 
-    //public static Object getObjectFromResultSet(ResultSet rs, Class klass) {
-     //   Object id =
-    //}
-
-    private void invokeGetMethod() {
-
-    }
+    private static DynamicMySqlDAO<Producer, String> producerDao = DAOFactory.getProducerDAO();
 
     public static Client getClientFromResultSet(ResultSet rs) throws SQLException {
         String cpf = rs.getString("cpf");
@@ -38,6 +35,22 @@ public class Mapper {
             producer.setName(rs.getString("name"));
             return producer;
         }
+
+        return null;
+    }
+
+    public static Game getGameFromResultSet(ResultSet rs) throws SQLException {
+        Integer id = rs.getInt("id");
+        String producerCnpj = rs.getString("producer_cnpj");
+        if (!producerCnpj.isEmpty()) {
+            Producer producer =  producerDao.findOne(producerCnpj);
+            Game game = new Game(id, producer);
+            game.setName(rs.getString("name"));
+            game.setPrice(rs.getFloat("price"));
+            game.setGenre(Genre.valueOf(rs.getString("genre")));
+            return game;
+        }
+
         return null;
     }
 }

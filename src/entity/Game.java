@@ -5,7 +5,7 @@ import entity.annotation.Id;
 import entity.annotation.ManyToOne;
 
 public class Game {
-    @Id private int id;
+    @Id private Integer id;
     private String name;
     private float price;
     @EnumType private Genre genre;

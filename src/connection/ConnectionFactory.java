@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-	private static final String URL = "jdbc:mysql://localhost/c12?useSSL=false";
-	private static final String USER = "root";
-	private static final String PASSWORD = "root";
+	private static final String URL = "jdbc:mysql://187.72.87.219/C12";
+	private static final String USER = "C12";
+	private static final String PASSWORD = "c12";
 	
 	public static Connection getConnection() {
 		try {
